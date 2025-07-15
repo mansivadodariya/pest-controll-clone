@@ -12,7 +12,7 @@ const CommonFormField = ({
 }) => {
   return (
     <div className="mb-4">
-      <label htmlFor={name} className="block text-sm font-medium text-gray-700 mb-1">
+      <label htmlFor={name} className="block text-sm text-start font-medium text-gray-700 mb-1">
         {label}
       </label>
       <input

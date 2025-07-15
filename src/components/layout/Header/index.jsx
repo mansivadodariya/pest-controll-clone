@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaPhoneAlt, FaChevronDown } from "react-icons/fa";
 import { lists } from "../../../constant/lists";
+import logo from "../../../assets/images/logo.png";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -9,14 +10,16 @@ export const Header = () => {
     <header className="fixed top-0 left-0 w-full bg-white z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 py-[16px] flex items-center  justify-between">
         {/* Logo */}
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center space-x-1">
           <img
             alt="7 States Pest Control Logo"
-            src="https://7statespestcontrol.com.au/wp-content/uploads/2022/06/7-states-logo-1.png.webp"
-            width="160"
-            height="56"
-            className="object-contain"
+            src={logo}
+            className="object-contain w-[56px] aspect-square transition-transform duration-500 ease-in-out animate-fade-in hover:scale-105 hover:brightness-110"
           />
+          <h1 className="text-2xl font-bold typewriter-clean transition-transform duration-500 ease-in-out animate-fade-in hover:scale-105 hover:brightness-110">
+            <span className="text-[#00b2ff]">Pest</span>
+            <span className="text-gray-900">Control</span>
+          </h1>
         </div>
 
         {/* Desktop Nav */}
@@ -26,11 +29,17 @@ export const Header = () => {
               link.dropdown ? (
                 <div key={idx} className="relative group">
                   {/* Trigger */}
-                  <div className="flex items-center space-x-1 cursor-pointer">
-                    <span className="font-medium text-[#374151] group-hover:text-blue-600">
+                  <div className="flex items-center space-x-1 cursor-pointer group relative">
+                    <span
+                      className="font-medium text-[#374151] group-hover:text-[#00b2ff] 
+    after:content-[''] after:absolute after:left-0 after:-bottom-1 
+    after:h-[2px] after:w-full after:bg-[#00b2ff] 
+    after:scale-x-0 group-hover:after:scale-x-100 
+    after:transition-transform after:duration-300 after:origin-center"
+                    >
                       {link.name}
                     </span>
-                    <FaChevronDown className="text-xs mt-1 text-[#374151] group-hover:text-blue-600" />
+                    <FaChevronDown className="text-xs mt-1 text-[#374151] group-hover:text-[#00b2ff]" />
                   </div>
 
                   {/* Dropdown */}
@@ -40,7 +49,7 @@ export const Header = () => {
                         <a
                           key={i}
                           href={item.href}
-                          className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
+                          className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-[#00b2ff] transition"
                         >
                           {item.name}
                         </a>
@@ -52,11 +61,16 @@ export const Header = () => {
                 <div key={idx}>
                   <a
                     href={link.href}
-                    className={`${
-                      link.name === "Home"
-                        ? "text-blue-600"
-                        : "text-[#374151] hover:text-blue-600"
-                    } font-medium`}
+                    className={`relative font-medium 
+    ${
+      link.name === "Home"
+        ? "text-[#00b2ff] after:scale-x-100"
+        : "text-[#374151] hover:text-[#00b2ff] hover:after:scale-x-100"
+    } 
+    after:content-[''] after:absolute after:left-0 after:-bottom-1 
+    after:h-[2px] after:w-full after:bg-[#00b2ff] 
+    after:transform after:scale-x-0 after:transition-transform after:duration-300
+    `}
                   >
                     {link.name}
                   </a>
@@ -69,15 +83,23 @@ export const Header = () => {
         {/* Call Button */}
         <a
           href="tel:+61434660060"
-          className="bg-orange-500 text-white hover:text-white px-4 py-2 rounded-md flex items-center space-x-2 hover:bg-orange-600"
+          className="relative bg-[#00B2FF] text-white px-3 py-2 sm:px-6 sm:py-3 rounded-md 
+           flex items-center justify-center space-x-2 overflow-hidden transition-all duration-300 
+           hover:bg-gray-100 hover:text-sky-500 double-shimmer w-auto"
         >
-          <FaPhoneAlt className="w-4 h-4" />
-          <span>+61 434 660 060</span>
+          <div className="relative z-10 flex items-center space-x-2 text-sm sm:text-base font-medium">
+            <FaPhoneAlt className="w-5 h-5 transition-colors duration-300" />
+
+            {/* Hide text on small devices, show on sm+ */}
+            <span className="hidden sm:inline whitespace-nowrap">
+              +61 434 660 060
+            </span>
+          </div>
         </a>
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-[#374151] ml-4"
+          className="md:hidden text-[#374151]"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           ☰
@@ -108,7 +130,7 @@ export const Header = () => {
                 key={idx}
                 href={link.href}
                 className={`block py-2 ${
-                  link.name === "Home" ? "text-blue-600" : "text-[#374151]"
+                  link.name === "Home" ? "text-[#00b2ff]" : "text-[#374151]"
                 }`}
               >
                 {link.name}

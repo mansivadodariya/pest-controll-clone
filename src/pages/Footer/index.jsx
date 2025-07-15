@@ -7,6 +7,7 @@ import {
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
+import logo from "../../assets/images/logo.png";
 
 export default function Footer() {
   return (
@@ -16,11 +17,17 @@ export default function Footer() {
           {/* Logo & About */}
           <div>
             <div className="mb-4">
-              <img
-                src="https://7statespestcontrol.com.au/wp-content/uploads/2022/06/7-states-logo-1.png.webp"
-                alt="7 States Pest Control Logo"
-                className="w-40 object-contain"
-              />
+              <div className="flex items-center justify-center space-x-1">
+                <img
+                  alt="7 States Pest Control Logo"
+                  src={logo}
+                  className="object-contain w-[56px] aspect-square transition-transform duration-500 ease-in-out animate-fade-in hover:scale-105 hover:brightness-110"
+                />
+                <h1 className="text-2xl font-bold typewriter-clean transition-transform duration-500 ease-in-out animate-fade-in hover:scale-105 hover:brightness-110">
+                  <span className="text-blue-400">Pest</span>
+                  <span className="text-white">Control</span>
+                </h1>
+              </div>
             </div>
             <p className="text-gray-400">
               Melbourne's trusted pest control experts with over a decade of
@@ -83,7 +90,7 @@ export default function Footer() {
               Available 24/7 for urgent pest control needs
             </p>
             <a href="tel:+61434660060">
-              <button className="bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium px-4 py-2 rounded-md">
+              <button className=" bg-[#00B2FF] hover:bg-[#009cdc] text-white text-sm font-medium px-4 py-2 rounded-md">
                 Emergency Call
               </button>
             </a>

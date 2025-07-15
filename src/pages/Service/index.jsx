@@ -1,4 +1,5 @@
 import React from "react";
+import { FaPhoneAlt } from "react-icons/fa";
 
 const services = [
   {
@@ -7,6 +8,7 @@ const services = [
       "Professional termite inspections, treatments, and prevention systems to protect your property investment.",
     href: "/termite-control",
     color: "bg-red-200",
+    color2: "bg-gradient-to-r from-white/80 to-red-100/60",
     icon: (
       <svg
         className="w-10 h-10 text-red-600"
@@ -23,6 +25,7 @@ const services = [
       "Safe and effective spider control treatments to eliminate dangerous and nuisance spider species.",
     href: "https://7statespestcontrol.com.au/our-services/spider-control-treatment-melbourne/",
     color: "bg-purple-200",
+    color2: "bg-gradient-to-r from-white/80 to-purple-100/60",
     icon: (
       <svg
         className="w-10 h-10 text-purple-600"
@@ -41,6 +44,7 @@ const services = [
       "Comprehensive rodent control and exclusion services to eliminate rats and mice from your property.",
     href: "https://7statespestcontrol.com.au/our-services/rodent-control-melbourne/",
     color: "bg-gray-200",
+    color2: "bg-gradient-to-r from-white/80 to-gray-100",
     icon: (
       <svg
         className="w-10 h-10 text-gray-600"
@@ -57,6 +61,7 @@ const services = [
       "Effective bed bug elimination treatments using advanced techniques for complete eradication.",
     href: "https://7statespestcontrol.com.au/our-services/bed-bug-treatment/",
     color: "bg-orange-200",
+    color2: "bg-gradient-to-r from-white/80 to-orange-100/60",
     icon: (
       <svg
         className="w-10 h-10 text-orange-600"
@@ -75,6 +80,7 @@ const services = [
       "Professional ant control solutions targeting colonies and preventing future infestations.",
     href: "https://7statespestcontrol.com.au/our-services/ant-pest-control/",
     color: "bg-green-200",
+    color2: "bg-gradient-to-r from-white/80 to-green-100/60",
     icon: (
       <svg
         className="w-10 h-10 text-green-600"
@@ -93,6 +99,7 @@ const services = [
       "Comprehensive cockroach elimination and prevention programs for homes and businesses.",
     href: "https://7statespestcontrol.com.au/our-services/cockroach-control/",
     color: "bg-yellow-200",
+    color2: "bg-gradient-to-r from-white/80 to-yellow-100/60",
     icon: (
       <svg
         className="w-10 h-10 text-yellow-600"
@@ -111,6 +118,7 @@ const services = [
       "Safe wasp nest removal and bee relocation services by licensed and experienced technicians.",
     href: "https://7statespestcontrol.com.au/our-services/wasp-nest-removal-melbourne/",
     color: "bg-amber-200",
+    color2: "bg-gradient-to-r from-white/80 to-amber-100/60",
     icon: (
       <svg
         className="w-10 h-10 text-amber-600"
@@ -129,6 +137,7 @@ const services = [
       "Targeted silverfish treatment solutions to protect your books, clothing, and household items.",
     href: "https://7statespestcontrol.com.au/our-services/silverfish-treatment/",
     color: "bg-blue-200",
+    color2: "bg-gradient-to-r from-white/80 to-blue-100",
     icon: (
       <svg
         className="w-10 h-10 text-blue-600"
@@ -141,26 +150,41 @@ const services = [
   },
 ];
 
-const ServiceCard = ({ title, description, href, icon, color }) => {
+const ServiceCard = ({ title, description, href, icon, color, color2 }) => {
   return (
-    <div className="rounded-lg bg-white text-gray-800 shadow-sm group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer border-2 hover:border-blue-200">
-      <a href={href}>
+    <>
+    <div className="relative group rounded-lg bg-white text-gray-800 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-blue-200 overflow-hidden hover:-translate-y-1">
+      {/* Half Blue Overlay on Hover */}
+
+      <div
+        className={`absolute inset-0 ${color2} opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none`}
+      />
+
+      <a href={href} className="relative z-10">
         <div className="p-6 text-center">
+          {/* Icon Circle */}
           <div
-            className={`w-16 h-16 ${color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-${color}-200 transition-colors`}
+            className={`w-16 h-16 ${color} rounded-full flex items-center justify-center mx-auto mb-4 transition-colors duration-300`}
           >
             {icon}
           </div>
-          <h3 className="text-xl font-semibold mb-3 group-hover:text-blue-600 transition-colors">
+
+          {/* Title */}
+          <h3 className="text-xl font-semibold mb-3 group-hover:text-[#45758a] transition-colors">
             {title}
           </h3>
+
+          {/* Description */}
           <p className="text-gray-600 mb-4 text-sm">{description}</p>
-          <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium border border-gray-300 bg-white hover:bg-blue-600 hover:text-white h-10 px-4 py-2 w-full transition-all">
+
+          {/* Button */}
+          <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium border border-gray-300 bg-white hover:bg-gray-600 hover:text-white h-10 px-4 py-2 w-full transition-all">
             Learn More
           </button>
         </div>
       </a>
     </div>
+    </>
   );
 };
 
@@ -169,7 +193,9 @@ export default function ServicesPage() {
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Services We Offer</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4 bg-gradient-to-r from-[#367186] to-gray-700 bg-clip-text text-transparent">
+            Services We Offer
+          </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Comprehensive pest control solutions for all types of pest problems
             across Melbourne and surrounding areas
@@ -188,18 +214,8 @@ export default function ServicesPage() {
             control issues.
           </p>
           <a href="tel:+61434660060">
-            <button className="inline-flex items-center justify-center gap-2 text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 h-11 rounded-md px-8">
-              <svg
-                className="w-4 h-4 mr-2"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                viewBox="0 0 24 24"
-              >
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.18 4.08 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.4 1.88.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.93.3 1.85.57 2.81.7a2 2 0 0 1 1.72 2.03z" />
-              </svg>
+            <button className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-white bg-[#00B2FF] hover:bg-black transition-colors h-11 rounded-md px-6 shadow-md">
+              <FaPhoneAlt className="w-4 h-4" />
               Call +61 434 660 060 for Custom Solutions
             </button>
           </a>
