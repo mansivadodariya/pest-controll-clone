@@ -25,35 +25,37 @@ export const Header = () => {
             {lists.navlinks.map((link, idx) =>
               link.dropdown ? (
                 <div key={idx} className="relative group">
-                  <div className="flex items-center space-x-1 cursor-pointer group">
-                    <span
-                      className={`font-medium text-[#374151] group-hover:text-blue-600`}
-                    >
+                  {/* Trigger */}
+                  <div className="flex items-center space-x-1 cursor-pointer">
+                    <span className="font-medium text-[#374151] group-hover:text-blue-600">
                       {link.name}
                     </span>
-                    <FaChevronDown
-                      className={`text-xs mt-1 text-[#374151] group-hover:text-blue-600`}
-                    />
+                    <FaChevronDown className="text-xs mt-1 text-[#374151] group-hover:text-blue-600" />
                   </div>
 
-                  <div className="absolute hidden group-hover:block bg-white shadow-md mt-2 rounded-md z-10">
-                    {link.dropdown.map((item, i) => (
-                      <a
-                        key={i}
-                        href={item.href}
-                        className="block px-4 py-2 hover:bg-gray-100 text-[#374151]"
-                      >
-                        {item.name}
-                      </a>
-                    ))}
-                  </div>
+                  {/* Dropdown */}
+                  {link.dropdown && (
+                    <div className="absolute top-full left-0 mt-2 w-52 bg-white border border-gray-200 rounded-md shadow-lg z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                      {link.dropdown.map((item, i) => (
+                        <a
+                          key={i}
+                          href={item.href}
+                          className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
+                        >
+                          {item.name}
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div key={idx}>
                   <a
                     href={link.href}
                     className={`${
-                      link.name === "Home" ? "text-blue-600" : "text-[#374151]"
+                      link.name === "Home"
+                        ? "text-blue-600"
+                        : "text-[#374151] hover:text-blue-600"
                     } font-medium`}
                   >
                     {link.name}
@@ -69,7 +71,7 @@ export const Header = () => {
           href="tel:+61434660060"
           className="bg-orange-500 text-white hover:text-white px-4 py-2 rounded-md flex items-center space-x-2 hover:bg-orange-600"
         >
-          <FaPhoneAlt  className="w-4 h-4"/>
+          <FaPhoneAlt className="w-4 h-4" />
           <span>+61 434 660 060</span>
         </a>
 
