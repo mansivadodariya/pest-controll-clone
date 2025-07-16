@@ -24,7 +24,7 @@ export default function Footer() {
                   className="object-contain w-[56px] aspect-square transition-transform duration-500 ease-in-out animate-fade-in hover:scale-105 hover:brightness-110"
                 />
                 <h1 className="text-2xl font-bold typewriter-clean transition-transform duration-500 ease-in-out animate-fade-in hover:scale-105 hover:brightness-110">
-                  <span className="text-blue-400">Pest</span>
+                  <span className="text-[#00b2ff]">Pest</span>
                   <span className="text-white">Control</span>
                 </h1>
               </div>
