@@ -105,7 +105,7 @@ export const AboutSection = () => {
       </div>
 
       {/* About Section */}
-      <div className="lg:mt-20 bg-white py-16 px-4 sm:px-6 lg:px-8">
+      <div className=" bg-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Side – Image with badge */}
           <div className="relative h-full w-full aspect-square lg:aspect-auto rounded-md overflow-hidden bg-white py-6">
