@@ -100,21 +100,21 @@ export const VideoShowcaseSection = () => {
             {videos.map((video, index) => (
               <div
                 key={index}
-                className="scroll-snap-align-start flex-shrink-0 w-[calc(100%/3-1.5rem)]"
+                className="scroll-snap-align-start flex-shrink-0 w-full lg:w-[calc(100%/3-1.5rem)]"
               >
                 {/* YouTube Video with rounded corners */}
                 <div className="relative aspect-video rounded-[8px] overflow-hidden mb-4 shadow-md hover:scale-[1.03] transition duration-300 ease-in-out">
                   <iframe
                     src={video.embedUrl}
                     title={video.title}
-                    className="w-full h-full"
+                    className="w-full h-full "
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
                 </div>
 
                 {/* Centered Title & Description */}
-                <div className="text-center px-2 sm:px-4 md:px-6">
+                <div className="hidden lg:block text-center px-2 sm:px-4 md:px-6">
                   <h3 className="text-xs sm:text-lg md:text-xl font-semibold text-gray-800 mb-1">
                     {video.title}
                   </h3>

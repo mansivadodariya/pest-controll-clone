@@ -61,7 +61,7 @@ export const AboutSection = () => {
     <section className="">
       {/* Feature Icons */}
       <div className="bg-gray-50 w-full px-4 py-16">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
           {features.map((feature, index) => (
             <div
               key={index}
@@ -83,10 +83,10 @@ export const AboutSection = () => {
       </div>
 
       {/* About Section */}
-      <div className="mt-20 bg-white py-16 px-4 sm:px-6 lg:px-8">
+      <div className="lg:mt-20 bg-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Side – Image with badge */}
-          <div className="relative h-full w-full rounded-md overflow-hidden bg-white py-6">
+          <div className="relative h-full w-full aspect-square lg:aspect-auto rounded-md overflow-hidden bg-white py-6">
             {images.map((img, i) => (
               <img
                 key={i}

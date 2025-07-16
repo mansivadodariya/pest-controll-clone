@@ -17,17 +17,58 @@ const HeroSection = () => {
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: "" });
+    const { name, value } = e.target;
+
+    // ✅ Input restrictions
+    if (name === "phone") {
+      // Allow only digits and max 10 characters
+      if (!/^\d*$/.test(value)) return;
+      if (value.length > 10) return;
+    }
+
+    if (name === "name" || name === "suburb") {
+      // Limit max length to 50
+      if (value.length > 50) return;
+    }
+
+    if (name === "email" && value.length > 100) return; // Email max 100 chars
+
+    setFormData({ ...formData, [name]: value });
+    setErrors({ ...errors, [name]: "" }); // Clear error on change
   };
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = "Name is required";
-    if (!formData.phone.trim()) newErrors.phone = "Phone is required";
-    if (!formData.email.trim()) newErrors.email = "Email is required";
-    if (!formData.suburb.trim()) newErrors.suburb = "Suburb is required";
-    if (!formData.pestIssue) newErrors.pestIssue = "Select a pest issue";
+
+    // ✅ Name validation
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    }
+
+    // ✅ Phone validation
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone is required";
+    } else if (!/^\d{10}$/.test(formData.phone)) {
+      newErrors.phone = "Enter a valid 10-digit number";
+    }
+
+    // ✅ Email validation
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Enter a valid email address";
+    }
+
+    // ✅ Suburb validation
+    if (!formData.suburb.trim()) {
+      newErrors.suburb = "Suburb is required";
+    }
+
+    // ✅ Pest Issue validation
+    if (!formData.pestIssue) {
+      newErrors.pestIssue = "Select a pest issue";
+    }
+
     return newErrors;
   };
 
@@ -37,7 +78,7 @@ const HeroSection = () => {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      alert("Form submitted!");
+      alert("Form submitted successfully!");
     }
   };
 
