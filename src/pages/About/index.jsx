@@ -16,11 +16,19 @@ const images = [
 ];
 export const AboutSection = () => {
   const [index, setIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
+  // ✅ Auto-loop every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % features.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
-    }, 3000); 
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
@@ -65,13 +73,27 @@ export const AboutSection = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="flex flex-col items-center text-gray-800 transition-all duration-300 
-                   hover:scale-105 hover:text-[#00B2FF] group cursor-pointer"
+              className={`flex flex-col items-center text-gray-800 transition-all duration-300 cursor-pointer 
+            ${
+              activeIndex === index
+                ? "scale-110 text-[#00B2FF]" // ✅ Active hover effect
+                : "hover:scale-105 hover:text-[#00B2FF]"
+            }`}
             >
-              <div className="text-4xl mb-3 text-[#00B2FF] transition-all duration-300 group-hover:scale-125 group-hover:text-black">
+              <div
+                className={`text-4xl mb-3 transition-all duration-300 ${
+                  activeIndex === index
+                    ? "scale-125 text-black"
+                    : "text-[#00B2FF] group-hover:text-black"
+                }`}
+              >
                 {feature.icon}
               </div>
-              <h3 className="font-semibold sm:text-base mb-2 text-black group-hover:text-[#00B2FF] transition">
+              <h3
+                className={`font-semibold sm:text-base mb-2 transition ${
+                  activeIndex === index ? "text-[#00B2FF]" : "text-black"
+                }`}
+              >
                 {feature.title}
               </h3>
               <p className="text-sm text-gray-600 max-w-[180px]">
