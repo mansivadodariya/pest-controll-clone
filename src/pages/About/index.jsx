@@ -11,8 +11,8 @@ import {
 } from "react-icons/fa";
 
 const images = [
-  "https://5.imimg.com/data5/SELLER/Default/2024/3/399078634/RY/AG/IZ/154618970/eco-friendly-pest-control-250x250.jpeg",
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuCazhp8tHFsKLHLPlnG_OJzKcoxAbsUNgyT2XPWKik8FTUGE6W6pbs-FnG_cTWPCWRbY&usqp=CAU",
+  "https://img.freepik.com/premium-photo/man-spraying-pesticide-with-hazmat-suit_1254870-6162.jpg?semt=ais_hybrid&w=740",
+  "https://img.freepik.com/premium-photo/exterminator-clad-full-protective-gear-crawls-closer-sizable-cockroach-kitchen-floor-ready-tackle-infestation_95891-74980.jpg?semt=ais_hybrid&w=740",
 ];
 export const AboutSection = () => {
   const [index, setIndex] = useState(0);
