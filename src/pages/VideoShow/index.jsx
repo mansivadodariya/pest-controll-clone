@@ -1,10 +1,11 @@
 import { useRef, useState, useEffect } from "react";
-import { FaPhoneAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaPhoneAlt, FaChevronLeft, FaChevronRight, FaPlay } from "react-icons/fa";
 
 export const VideoShowcaseSection = () => {
   const scrollRef = useRef(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
+  const [playingIndex, setPlayingIndex] = useState(null);
 
   const checkScrollPosition = () => {
     const el = scrollRef.current;
@@ -20,6 +21,10 @@ export const VideoShowcaseSection = () => {
     el.addEventListener("scroll", checkScrollPosition);
     return () => el.removeEventListener("scroll", checkScrollPosition);
   }, []);
+  const getThumbnail = (url) => {
+    const videoId = url.split("embed/")[1]?.split("?")[0];
+    return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  };
 
   const scroll = (dir) => {
     const el = scrollRef.current;
@@ -72,7 +77,7 @@ export const VideoShowcaseSection = () => {
           <button
             onClick={() => scroll("left")}
             disabled={atStart}
-            className={`absolute -left-6 top-1/2 -translate-y-1/2 z-10 bg-white border border-sky-400 rounded-full p-2 shadow-md transition 
+            className={`absolute -left-6 top-1/2 -translate-y-1/2 z-10  transition 
       ${atStart ? "opacity-30 cursor-not-allowed" : "hover:bg-sky-50"}`}
           >
             <FaChevronLeft className="text-sky-600" />
@@ -82,7 +87,7 @@ export const VideoShowcaseSection = () => {
           <button
             onClick={() => scroll("right")}
             disabled={atEnd}
-            className={`absolute -right-6 top-1/2 -translate-y-1/2 z-10 bg-white border border-sky-400 rounded-full p-2 shadow-md transition 
+            className={`absolute -right-6 top-1/2 -translate-y-1/2 z-10  transition 
       ${atEnd ? "opacity-30 cursor-not-allowed" : "hover:bg-sky-50"}`}
           >
             <FaChevronRight className="text-sky-600" />
@@ -102,18 +107,38 @@ export const VideoShowcaseSection = () => {
                 key={index}
                 className="scroll-snap-align-start flex-shrink-0 w-full lg:w-[calc(100%/3-1.5rem)]"
               >
-                {/* YouTube Video with rounded corners */}
-                <div className="relative aspect-video rounded-[8px] overflow-hidden mb-4 shadow-md hover:scale-[1.03] transition duration-300 ease-in-out">
-                  <iframe
-                    src={video.embedUrl}
-                    title={video.title}
-                    className="w-full h-full "
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
+                {/* ✅ Video Card */}
+                <div className="relative aspect-video rounded-[8px] overflow-hidden mb-4 shadow-md hover:scale-[1.03] transition duration-300 ease-in-out cursor-pointer">
+                  {playingIndex === index ? (
+                    <iframe
+                      src={video.embedUrl + "?autoplay=1"}
+                      title={video.title}
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  ) : (
+                    <div
+                      className="relative w-full h-full"
+                      onClick={() => setPlayingIndex(index)}
+                    >
+                      {/* ✅ Thumbnail */}
+                      <img
+                        src={getThumbnail(video.embedUrl)}
+                        alt={video.title}
+                        className="w-full h-full object-cover"
+                      />
+                      {/* ✅ Black Overlay with Play Button */}
+                      <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                        <button className="text-white text-3xl hover:text-[#009cdc] rounded-full p-3">
+                          <FaPlay />
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
-                {/* Centered Title & Description */}
+                {/* ✅ Centered Title & Description (Desktop Only) */}
                 <div className="hidden lg:block text-center px-2 sm:px-4 md:px-6">
                   <h3 className="text-xs sm:text-lg md:text-xl font-semibold text-gray-800 mb-1">
                     {video.title}
